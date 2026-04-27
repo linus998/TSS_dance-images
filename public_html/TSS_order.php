@@ -515,8 +515,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .inline-group>div {
-      flex: 1;
-      min-width: 140px;
+      flex: 2;
+      min-width: 180px;
     }
 
     /* Mobile-specific styles */
@@ -570,6 +570,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     select {
       width: 100%;
+      min-width: 180px;
+      max-width: 100%;
       padding: 12px 15px;
       padding-right: 3rem;
       border-radius: 12px;
@@ -586,6 +588,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       background-repeat: no-repeat;
       background-position: right 1rem center;
       background-size: 1.2em;
+      box-sizing: border-box;
     }
 
     select:focus {
