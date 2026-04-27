@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
       $mail->addAddress($to, $name);
 
-      $qrData = urlencode("Order ID: $orderId\nName: $name\nShow: $show_label\nSeats: $seats");
+      $qrData = urlencode("Order ID: $orderId\nName: $name\nShow: $show_label\nSeats: $seats\nTest: True");
       $qrImageUrl = "https://services.dance-images.be/TSS_generateQR.php?data=" . $qrData;
 
       $mail->isHTML(true);

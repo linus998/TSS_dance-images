@@ -662,7 +662,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <input type="number" name="adult_<?= $code ?>" id="adult_<?= $code ?>" value="<?php echo htmlspecialchars($_POST["adult_$code"] ?? '0'); ?>" min="0" />
             </div>
             <div>
-              <label for="child_<?= $code ?>">Kinderen</label>
+              <label for="child_<?= $code ?>">Kinderen (tot 12 jaar)</label>
               <input type="number" name="child_<?= $code ?>" id="child_<?= $code ?>" value="<?php echo htmlspecialchars($_POST["child_$code"] ?? '0'); ?>" min="0" />
             </div>
             <div>
