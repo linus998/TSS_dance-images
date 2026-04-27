@@ -632,11 +632,11 @@ if ($order_id) {
     <?php
     foreach ($orders as $o) {
       $classes = ['order'];
-      if ($o['order_Completed']) {
-        $classes[] = 'completed';
-      } elseif ($o['order_Sent']) {
+      if ($o['order_Sent']) {
         // CSS uses class 'send' for sent styling
         $classes[] = 'send';
+      } elseif ($o['order_Completed']) {
+        $classes[] = 'completed';
       }
       elseif ($o['order_ID'] === $order_id) {
         $classes[] = 'selected';
@@ -839,6 +839,7 @@ if ($order_id) {
         .then(data => {
           if (data.success) {
             alert('E-mail succesvol verzonden!');
+            window.location.reload();
           } else {
             alert('Fout bij verzenden e-mail: ' + (data.error || 'Onbekende fout'));
           }
