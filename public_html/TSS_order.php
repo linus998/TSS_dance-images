@@ -111,7 +111,7 @@ function fetchSingle($db, $query) {
 
 // ON SUBMIT
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $name = trim($_POST['name'] ?? '');
+  $name = trim($_POST['firstname'] ?? '') . ' ' . trim($_POST['name'] ?? '');
   $email = trim($_POST['email'] ?? '');
 
 
@@ -640,8 +640,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <form method="POST">
-      <label for="name">Naam</label>
-      <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>" required />
+      <div class="inline-group" style="margin-bottom: 30px;">
+        <div>
+          <label for="firstname">Voornaam</label>
+          <input type="text" name="firstname" id="firstname" value="<?php echo htmlspecialchars($_POST['firstname'] ?? ''); ?>" required />
+        </div>
+        <div>
+          <label for="name">Naam</label>
+          <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>" required />
+        </div>
+      </div>
 
       <label for="email">Email</label>
       <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required style="margin-bottom: 30px;" />
