@@ -1,5 +1,4 @@
-<?php
-// generateQR.php
+<?php // generateQR.php
 
 if (!isset($_GET['data']) || empty($_GET['data'])) {
     http_response_code(400);
