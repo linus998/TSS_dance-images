@@ -142,6 +142,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $mededeling .= " | Er is/zijn $rolstoel rolstoel(en) gevraagd bij deze bestelling!";
         }
 
+        if($children && $adults <= 0){
+          $error_message = "Kinderen moeten vergezeld worden door een volwassene!";
+          break;
+        }
+
         $show_number = $show_numbers[$code] ?? null;
         $sold_to_adult = fetchSingle($db, "SELECT SUM(order_Adults) FROM t_orders WHERE order_Show = " . $db->quote($show_number));
         $sold_to_children = fetchSingle($db, "SELECT SUM(order_Kids) FROM t_orders WHERE order_Show = " . $db->quote($show_number));
