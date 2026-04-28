@@ -138,6 +138,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
         }
 
+        if($rolstoel){
+          $mededeling .= " | Er is/zijn $rolstoel rolstoel(en) gevraagd bij deze bestelling!";
+        }
+
         $show_number = $show_numbers[$code] ?? null;
         $sold_to_adult = fetchSingle($db, "SELECT SUM(order_Adults) FROM t_orders WHERE order_Show = " . $db->quote($show_number));
         $sold_to_children = fetchSingle($db, "SELECT SUM(order_Kids) FROM t_orders WHERE order_Show = " . $db->quote($show_number));
@@ -148,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $error_message = "Er zijn niet meer zoveel tickets beschikbaar. (Nog $available_tickets beschikbaar)";
           break;        
         }
+
         $total = ($adults * $priceAdult) + ($children * $priceChild);
         $totals[$code] = $total;
 
@@ -286,8 +291,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <h2 style='color:#2c89e8; margin-top:0;'>&#127903; Bevestiging van uw TSS-ticketbestelling</h2>
               
               <p style='font-size:15px;'>Beste <strong>$name</strong>,</p>
-              <p style='font-size:15px;'>Bedankt voor uw bestelling! Hieronder vindt u een overzicht van uw gekozen voorstelling(en):</p>
-
+              <p style='font-size:15px;'>Bedankt voor uw bestelling! Nadat u een envelope met het juiste bedrag (€$totalCost) afgegeven heeft krijgt u de tickets in de vorm van een Qr-code in uw mailbox. Indien u aan de kassa wil betalen zal u de tickets ontvangen na de betaling aan de kassa.</p>
+              <p style='font-size:15px;'>Hieronder vindt u een overzicht van uw gekozen voorstelling(en):</p>
               <table style='width:100%; border-collapse:collapse; margin-top:20px; font-size:14px;'>
                 <thead style='background:#eaf3ff;'>
                   <tr>
@@ -628,6 +633,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <div class="container">
     <h2>🎟️ Ticket Bestellen</h2>
+
+    <p style="position: absolute; top: 50px; right: 50px;">
+      <a href="BLOG_view.php?file=Hulp-Met-Ticket-Bestellingen.md" style="display: inline-block; padding: 8px 16px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 4px; font-size: 14px;">
+        Hulp nodig bij bestellen?
+      </a>
+    </p>
 
     <?php if (isset($error_message)): ?>
       <div class="message error">
