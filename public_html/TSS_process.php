@@ -184,6 +184,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // === Reset Action ===
   if ($data['action'] === 'reset_order' || (isset($data['seats']) && empty($data['seats']))) {
+
+    $stmt = $db->prepare("SELECT order_Sent FROM t_orders WHERE order_ID = ?");
+    $stmt->execute([$orderId]);
+    $sentBool = $stmt->fetchColumn();
+
+    if($sentBool){
+      echo json_encode(['success' => false, 'error' => 'Je kan geen bestelling resetten die al verzonden is.']);
+      exit;
+    }
+
     $stmt = $db->prepare("SELECT order_AssignedSeats FROM t_orders WHERE order_ID = ?");
     $stmt->execute([$orderId]);
     $assigned = $stmt->fetchColumn();
