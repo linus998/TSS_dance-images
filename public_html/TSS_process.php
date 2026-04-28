@@ -587,6 +587,13 @@ if ($order_id) {
       box-shadow: none;
       cursor: default;
     }
+
+    .row-separator {
+      height: 20px;
+      width: 100%;
+      border-top: 2px dashed var(--primary);
+      margin: 10px 0;
+    }
   </style>
 
 </head>
@@ -671,7 +678,11 @@ if ($order_id) {
       <div id="totalSeatsRequired" style="display:none;"><?= $totalSeatsRequired ?></div>
 
       <div id="seats">
-        <?php foreach ($grouped as $row => $cols): ?>
+        <?php 
+        $rowIndex = 0;
+        foreach ($grouped as $row => $cols): 
+          $rowIndex++;
+        ?>
           <div class="seat-row">
             <?php
             for ($col = 1; $col <= $max_col; $col++) {
@@ -702,6 +713,9 @@ if ($order_id) {
             }
             ?>
           </div>
+          <?php if ($rowIndex == 3 || $rowIndex == 6|| $rowIndex == 9): ?>
+            <div class="row-separator"></div>
+          <?php endif; ?>
         <?php endforeach; ?>
       </div>
 
