@@ -1,4 +1,11 @@
 <?php
+
+// construction
+//=============================================================
+header("Location: UnderConstruction.html");
+exit;             
+//=============================================================
+
 // Show errors only in logs, not displayed publicly
 ini_set('display_errors', 1);
 ini_set('log_errors', 1);
